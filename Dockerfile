@@ -1,5 +1,6 @@
- FROM ubuntu:latest
-WORKDIR /usr/share/ubuntu/html
-COPY . /usr/share/ubuntu/html/
-EXPOSE 81g
-CMD ["ubuntu","-g", "deamon off;"]
+FROM ubuntu:latest
+WORKDIR /var/www/html
+RUN apt-get update -y
+RUN apt-get install apache2 -y
+COPY . /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
